@@ -64,5 +64,4 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class , 'user_id');
     }
 
-
 }

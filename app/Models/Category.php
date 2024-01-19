@@ -17,9 +17,6 @@ class Category extends Model
         return $this->hasMany(Product::class , 'parent_id');
     }
 
-    public function orderItem()
-    {
-        return $this->hasMany(OrderItem::class , 'category_name');
-    }
+  
 
 }

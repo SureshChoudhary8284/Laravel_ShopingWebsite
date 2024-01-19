@@ -10,7 +10,6 @@ class Address extends Model
     use HasFactory;
     protected $fillable = ['user_id', 'is_default', 'street', 'city', 'state', 'country', 'zip'];
  
-
      public function user()  
      {
         return $this->belongsTo(User::class, 'user_id');
