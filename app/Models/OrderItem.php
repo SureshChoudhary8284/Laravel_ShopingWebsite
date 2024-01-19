@@ -15,15 +15,6 @@ class OrderItem extends Model
        return $this->belongsTo(Order::class, 'order_id');
     }
  
-    public function product()  
-    {
-       return $this->belongsTo(Product::class, 'product_name');
-    }
-
-    public function category()  
-    {
-       return $this->belongsTo(Category::class, 'category_name');
-    }
 
 }
 

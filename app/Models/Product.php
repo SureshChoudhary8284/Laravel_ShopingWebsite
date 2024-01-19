@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Models;
-use App\Models\ProductImages;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_id', 'name', 'description', 'price', 'quantity', 'status'];
+    protected $fillable = ['category_id', 'product_name', 'description', 'price', 'quantity', 'status'];
 
     
     public function category()  
@@ -21,11 +21,4 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class , 'product_id');
     }
-
-    public function orderItem()
-    {
-        return $this->hasMany(OrderItem::class , 'product_name');
-    }
-
-
 }
