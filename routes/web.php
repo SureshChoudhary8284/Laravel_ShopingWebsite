@@ -1,5 +1,5 @@
 <?php
-
+ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -23,3 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'Adminhome'])->name('admindashboard')
 ->middleware('is_admin');
+
+
+Route::get('/productindex', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
