@@ -11,6 +11,4 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['name', 'description', 'parent_id'];
 
-
-
 }

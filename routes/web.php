@@ -1,5 +1,5 @@
 <?php
- use App\Http\Controllers\ProductController;
+ 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -25,4 +25,3 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'Adminhom
 ->middleware('is_admin');
 
 
-Route::get('/productindex', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');

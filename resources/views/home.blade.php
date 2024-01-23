@@ -16,14 +16,31 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Orders</a>
           </li>
-     
         </ul>
-        <form class="d-flex" role="search">
+        <div>
+        <ul>
+          {{-- @foreach ($categories as $category)
+          <li>{{ $category->name }}</li>
+          <li>{{ $category->parent_id }}</li>
+      @endforeach --}}
+      </ul>
+    </div>
+        <form class="d-flex" role="search" >
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-      </div>
+      </div> 
+     
+      <div class="shopping-cart-button">
+        <a href="cart.html" class="outline">View cart</a>
     </div>
+    <div class="col-xl-3 col-lg-4">
+      <div class="header-info header-info-right">
+          <ul>                                
+              <li><i class="fi-rs-key"></i><a href="login.html">Log In </a>  / <a href="register.html">Sign Up</a></li>
+          </ul>
+      </div>
+  </div>
   </nav>
 
   <hr>
@@ -36,16 +53,17 @@
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"  aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-        @foreach ($products as $item)
-        <div class="carousel-item {{ $item['id']==1?'active':''}}">
-        <img src="img/h4-slide4.png" class="d-block w-100" alt="alt1">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 style="color:black ; text-align:right">{{ $item ['name'] }}</h2>
-         <p style="color:black ; text-align:right">{{ $item['description'] }}</p>
-        </div>
-      </div>
+      @foreach ($products as $item)
+          <div class="carousel-item {{ $item['id'] == 1 ? 'active' : '' }}">
+              <img src="img/h4-slide4.png" class="d-block w-100" alt="alt1">
+              <div class="carousel-caption d-none d-md-block">
+                  <h2 style="color: black; text-align: right">{{ $item['name'] }}</h2>
+                  <p style="color: black; text-align: right">{{ $item['description'] }}</p>
+              </div>
+          </div>
       @endforeach
-    </div>
+  </div>
+  
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
