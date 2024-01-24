@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,33 +14,35 @@ class ProductController extends Controller
         $product->category_id = 3; // Replace with the actual category_id
         $product->name = ' Jens';
         $product->description = 'This is a formate jens stylis';
-        $product->price = '600';
+        $product->price = 'Rs.600';
         $product->quantity = 200;
         $product->status = 'active';
         $product->save();
-        //return view('home' , ['product' => $product]);
         return response()->json(['product' => $product]);
     }
-
-    public function show($id)
+    public function show()
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $products = Product::with('images')->get();
+        return view('home', ['products' => $products]);
     }
-// }
-    // public function index()
-    // {
-    //     $data= Product::all();
-    //     return view('product.index' , compact('products'));
-    // }
 
-    // public function create()
-    // {
-    //     return view('product.create');
-    // }
+    public function detail($id){
+        $product= Product::find($id);
+        return view('product.detail', ['product' => $product]);
+    }
 
-    // public function store()
-    // {
-    //     return view('product.create');
-    // }
+
+    public function searchProducts(Request $request)
+    {
+        $query = $request->input('query');
+    
+        // Perform search logic using Eloquent
+        $products = Product::where('name', 'like', '%' . $query . '%')
+                           ->orWhere('description', 'like', '%' . $query . '%')
+                           ->get();
+    
+        return view('search', compact('products'));
+    }
+   
+   
 }

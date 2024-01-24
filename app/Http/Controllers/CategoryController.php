@@ -14,13 +14,19 @@ class CategoryController extends Controller
     public function index()
     {
         // Retrieve all categories from the database
-        $categories = Category::all();
+     
         $categories = new Category();
         $categories->name = 'Dress';
         $categories->description = 'This is category.';
         $categories->parent_id = null;
         $categories->save();
-     // return response()->json(['categories' => $categories]);
         return view('home' , ['categories' => $categories]);
+    }
+
+    public function categoryshow()
+    {
+      $categories = Category::all();
+      return response()->json(['categories' => $categories]);
+        //  return view('home' , ['categories' => $categories]);
     }
 }

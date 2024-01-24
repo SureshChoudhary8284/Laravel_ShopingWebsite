@@ -22,11 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
     Route::post('/product', [ProductController::class, 'index']); // Retrieve all products
-    Route::get('/product/{id}', [ProductController::class, 'show']); // Retrieve a specific product by ID
-
+    Route::get('/product/show', [ProductController::class, 'show']); // Retrieve a specific product by ID
+    Route::get('/detail/{id}', [ProductController::class, 'detail']);
+    Route::get('/search', [ProductController::class, 'search']);
+    
 
 //images
     Route::post('/productimage', [ProductImageController::class, 'index']);
+    Route::get('/productimage/show', [ProductImageController::class, 'show']);
 
-    Route::get('/categories', [CategoryController::class, 'index']);
-    Route:: post('/category/post',[CategoryController::class, 'show']);
+    Route::post('/categories', [CategoryController::class, 'index']);
+    Route:: get('/category/show',[CategoryController::class, 'categoryshow']);
