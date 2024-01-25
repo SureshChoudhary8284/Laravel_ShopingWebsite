@@ -10,10 +10,10 @@ class Product extends Model
     use HasFactory;
     protected $fillable = ['category_id', 'product_name', 'description', 'price', 'quantity', 'status'];
 
-    
-    public function category()  
+
+    public function categories()
     {
-       return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class,'category_id');
     }
 
     public function images()

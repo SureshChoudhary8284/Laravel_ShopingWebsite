@@ -24,12 +24,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('/product', [ProductController::class, 'index']); // Retrieve all products
     Route::get('/product/show', [ProductController::class, 'show']); // Retrieve a specific product by ID
     Route::get('/detail/{id}', [ProductController::class, 'detail']);
-    Route::get('/search', [ProductController::class, 'search']);
-    
+    Route::get('/product/search', [ProductController::class, 'searchProducts']);
+    Route::get('/product/search/{parent_id}', [ProductController::class, 'searchProductsid']);
 
 //images
     Route::post('/productimage', [ProductImageController::class, 'index']);
     Route::get('/productimage/show', [ProductImageController::class, 'show']);
 
     Route::post('/categories', [CategoryController::class, 'index']);
-    Route:: get('/category/show',[CategoryController::class, 'categoryshow']);
+   // Route:: get('/categories/{id}',[CategoryController::class, 'categoryshow']);
+
+    Route::get('/get-product-details/{categoryId}', [CategoryController::class, 'getProductDetails']);
+     //Route::get('/categories/{id}', [CategoryController::class, 'show']);
+  //  Route::get('/category/search',[CategoryController::class,'categorysearch']);

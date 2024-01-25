@@ -11,33 +11,23 @@
 
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
      <link rel="stylesheet" href="/master.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-
-    
-
     <div id="master">
         {{-- navbar --}}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/api/product/show/">ECOMMERCE</a>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+         <div class="container-fluid">
+          <a class="navbar-brand" href="/api/product/show/" style="display: flex; align-items: center;">
+            <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
+        </a>
+        
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,33 +40,26 @@
           <a class="nav-link" href="#">Orders</a>
         </li>
       </ul>
-      <div class="dropdown">
-      
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Categories
-        </a>
-      
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Electronic</a></li>
-          <li><a class="dropdown-item" href="#">Dresses</a></li>
-        </ul>
-      </div>
-
-  
-        <form action="/api/product/search" class="d-flex" role="search">
-        <input  name="query" class="form-control me-2" type="search" placeholder="Search-bar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="container center-form">
+        <form action="/api/product/search" class="d-flex">
+            <input name="query" class="form-control me-2 wider-input" type="search" placeholder="Search-bar" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
     </div> 
-  
-
-<div class="col-xl-3 col-lg-4">
-  <div class="header-info header-info-right">
-      <ul>                                
-          <li><i class="fi-rs-key"></i><a href="login.html">Log In </a>  / <a href="register.html">Sign Up</a></li>
-      </ul>
-  </div>
-</div>
+          <ul class="navbar-nav ml-auto">           
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Login
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Logout</a>
+                  </div>
+              </li>
+          </ul>
+ 
   </div>
     <div class="col-xl-2 col-lg-9">
       <div class="shopping-cart-button">
@@ -84,6 +67,30 @@
       </div>
       
    </nav>
+   <hr>
+
+   <div class="btn-group">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+    Electronic
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+    <li><a class="dropdown-item" href="/api/product/search/{{ $item['parent_id'] }}">Mobile</a></li>
+    <li><a class="dropdown-item" href="#">Computer</a></li>
+    <li><a class="dropdown-item" href="#">Laptop</a></li>
+  </ul>
+</div>
+
+  <div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+      Dresses
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
+      <li><a class="dropdown-item" href="#">Shirt</a></li>
+      <li><a class="dropdown-item" href="#">Jens</a></li>
+    </ul>
+  </div>
+
+   <hr>
   
         <main class="py-4">
             @yield('content')
@@ -156,9 +163,12 @@
           <!-- Section: Social media -->
         </div>
         <!-- Grid container -->
-      
+       
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+          <a class="navbar-brand" href="/api/product/show/" style="display: flex; align-items: center;">
+            <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
+        </a>
           © 2024 Copyright:
           <a class="text-body" href="https:choudhary.com/">choudhary@.com</a>
         </div>

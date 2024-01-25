@@ -10,10 +10,10 @@ class ProductImageController extends Controller
      public function index()
      {
          $ProductImage = new ProductImage();
-         $ProductImage->product_id = 12; // Replace with the actual category_id
-         $ProductImage->name = 'jens';
-         $ProductImage->path = '/img/jens.jpeg';
-         $ProductImage->sequence = '6';
+         $ProductImage->product_id = 17; // Replace with the actual category_id
+         $ProductImage->name = ' Dell Mobile';
+         $ProductImage->path = '/img/dell.jpeg';
+         $ProductImage->sequence = '10';
          $ProductImage->type ='png|jpg|jpeg';
          $ProductImage->save();
          //return view('home' , ['product' => $product]);

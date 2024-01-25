@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('content')
@@ -8,13 +7,15 @@
           @foreach ($products as $index => $item)
               <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                 <a href="/api/detail/{{ $item['id']}}">
-                <img src="{{ $item->images->first()->path }}" class="d-block w-90" alt="{{ $item->name }}"
-                style="max-height: auto; object-fit: cover; margin-left:30%;">
-             <div class="carousel-caption d-none d-md-block">
-               <h2 style="color: black; text-align: right">{{ $item->name }}</h2>
-               <p style="color: black; text-align: right">{{ $item->description }}</p>
-           </div>
-               </a>
+                  @if ($item->images->isNotEmpty() && $item->images->first())
+                    <img src="{{ $item->images->first()->path }}" class="d-block w-90" alt="{{ $item->name }}"
+                    style="max-height: auto; object-fit: cover; margin-left:30%;">
+                  @endif
+                  <div class="carousel-caption d-none d-md-block">
+                    <h2 style="color: black; text-align: right">{{ $item->name }}</h2>
+                    <p style="color: black; text-align: right">{{ $item->description }}</p>
+                  </div>
+                </a>
               </div>
           @endforeach
       </div>
@@ -37,8 +38,10 @@
                   <td style="width: 300px; padding: 8px; border: 1px solid #ccc; text-align: center;">
                       <div>
                           @foreach($product->images as $image)
-                              <a href="/api/detail/{{ $product->id }}">
-                                  <img src="{{ $image->path }}" style="max-width: 300px; height: auto;"><hr>
+                              <a href="api/product/search/{{ $item->id }}">
+                                  @if ($image)
+                                    <img src="{{ $image->path }}" style="max-width: 300px; height: auto;"><hr>
+                                  @endif
                               </a>
                           @endforeach
                           <h4> Name :{{ $product->name }}</h4>
@@ -51,8 +54,5 @@
   </table>
   
   <hr>
-  
-
-
 </div>
 @endsection

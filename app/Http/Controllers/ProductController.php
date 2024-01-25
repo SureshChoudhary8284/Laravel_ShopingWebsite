@@ -11,11 +11,11 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $product->category_id = 3; // Replace with the actual category_id
-        $product->name = ' Jens';
-        $product->description = 'This is a formate jens stylis';
-        $product->price = 'Rs.600';
-        $product->quantity = 200;
+        $product->category_id = 1; // Replace with the actual category_id
+        $product->name = ' Samsung Phone';
+        $product->description = 'This is a small and many features';
+        $product->price = '6000';
+        $product->quantity = 100;
         $product->status = 'active';
         $product->save();
         return response()->json(['product' => $product]);
@@ -31,6 +31,7 @@ class ProductController extends Controller
         return view('product.detail', ['product' => $product]);
     }
 
+    
 
     public function searchProducts(Request $request)
     {
@@ -39,9 +40,21 @@ class ProductController extends Controller
         // Perform search logic using Eloquent
         $products = Product::where('name', 'like', '%' . $query . '%')
                            ->orWhere('description', 'like', '%' . $query . '%')
+                            ->with('images')
                            ->get();
     
-        return view('search', compact('products'));
+        return view('product.search', compact('products'));
+    }
+
+    public function searchProductsid($parent_id)
+    {
+        $products = Product::with('images')
+            ->whereHas('category', function ($query) use ($parent_id) {
+                $query->where('parent_id', $parent_id);
+            })
+            ->get();
+
+        return response()->json($products);
     }
    
    
