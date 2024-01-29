@@ -12,7 +12,8 @@
     
     <!-- Bootstrap CSS -->
 
-     <link rel="stylesheet" href="/master.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -46,20 +47,49 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
-    </div> 
-          <ul class="navbar-nav ml-auto">           
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Login
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Profile</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Logout</a>
-                  </div>
-              </li>
-          </ul>
- 
+   </div> 
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- Left Side Of Navbar -->
+    <ul class="navbar-nav me-auto">
+
+    </ul>
+
+    <!-- Right Side Of Navbar -->
+    <ul class="navbar-nav ms-auto">
+        <!-- Authentication Links -->
+        @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+            @endif
+
+        @else
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+                  
+                </div>
+            </li>
+        @endguest
+    </ul>
+</div>
+
+
+
   </div>
     <div class="col-xl-2 col-lg-9">
       <div class="shopping-cart-button">
@@ -67,29 +97,28 @@
       </div>
       
    </nav>
+
    <hr>
-
    <div class="btn-group">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-    Electronic
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-    <li><a class="dropdown-item" href="/api/product/search/{{ $item['parent_id'] }}">Mobile</a></li>
-    <li><a class="dropdown-item" href="#">Computer</a></li>
-    <li><a class="dropdown-item" href="#">Laptop</a></li>
-  </ul>
-</div>
-
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+      Electronic
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+      <li><a class="dropdown-item" href="/api/productname/search/3">Mobile</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/75">Computer</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/7">Laptop</a></li>
+    </ul>
+  </div>
+  
   <div class="btn-group">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
       Dresses
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
-      <li><a class="dropdown-item" href="#">Shirt</a></li>
-      <li><a class="dropdown-item" href="#">Jens</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/27">Shirt</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/27">Jeans</a></li>
     </ul>
   </div>
-
    <hr>
   
         <main class="py-4">
@@ -102,14 +131,11 @@
           <!-- Section: Social media -->
           <section class="mb-4">
             <!-- Facebook -->
-            <a
-            data-mdb-ripple-init
-              class="btn text-white btn-floating m-1"
+            <a data-mdb-ripple-init  class="btn text-white btn-floating m-1"
               style="background-color: #3b5998;"
               href="#!"
               role="button"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
+              ><i class="fab fa-facebook-f"></i></a>
       
             <!-- Twitter -->
             <a

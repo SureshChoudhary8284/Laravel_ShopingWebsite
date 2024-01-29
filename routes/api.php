@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,15 +26,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('/product/show', [ProductController::class, 'show']); // Retrieve a specific product by ID
     Route::get('/detail/{id}', [ProductController::class, 'detail']);
     Route::get('/product/search', [ProductController::class, 'searchProducts']);
-    Route::get('/product/search/{parent_id}', [ProductController::class, 'searchProductsid']);
+    Route::get('/productname/search/{category_id}', [ProductController::class, 'searchProductsByParentId']);
 
 //images
     Route::post('/productimage', [ProductImageController::class, 'index']);
     Route::get('/productimage/show', [ProductImageController::class, 'show']);
 
     Route::post('/categories', [CategoryController::class, 'index']);
-   // Route:: get('/categories/{id}',[CategoryController::class, 'categoryshow']);
-
-    Route::get('/get-product-details/{categoryId}', [CategoryController::class, 'getProductDetails']);
      //Route::get('/categories/{id}', [CategoryController::class, 'show']);
-  //  Route::get('/category/search',[CategoryController::class,'categorysearch']);
+
+
+//cart
+Route::post('/addcart/store/{$user_id}/{$product_id}', [CartController::class, 'addcart']);

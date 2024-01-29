@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Category;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,10 @@ class ProductController extends Controller
         return view('home', ['products' => $products]);
     }
 
-    public function detail($id){
-        $product= Product::find($id);
+    public function detail($id)
+    {
+        $product = Product::with('Category', 'images')->find($id);
+
         return view('product.detail', ['product' => $product]);
     }
 
@@ -46,16 +49,16 @@ class ProductController extends Controller
         return view('product.search', compact('products'));
     }
 
-    public function searchProductsid($parent_id)
+    public function searchProductsByParentId($category_id)
     {
-        $products = Product::with('images')
-            ->whereHas('category', function ($query) use ($parent_id) {
-                $query->where('parent_id', $parent_id);
-            })
-            ->get();
+        // Perform search logic using Eloquent
+        $products = Product::where('category_id', $category_id)
+                        ->with('images')
+                        ->get();  
 
-        return response()->json($products);
+        return view('product.search', compact('products'));
     }
-   
+      
+
    
 }

@@ -9,6 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Addresses;
 use App\Models\Orders;
 use App\Models\Carts;
+use Illuminate\Support\Facades\Auth;
 //use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
@@ -38,6 +39,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast.
      *
@@ -47,6 +49,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
 
 
     public function Address()
@@ -64,4 +67,5 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class , 'user_id');
     }
 
+  
 }
