@@ -3,9 +3,10 @@
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,13 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
     Route::post('/product', [ProductController::class, 'index']); // Retrieve all products
-    Route::get('/product/show', [ProductController::class, 'show']); // Retrieve a specific product by ID
+    Route::get('/homepage', [ProductController::class, 'show']); // Retrieve a specific product by ID
     Route::get('/detail/{id}', [ProductController::class, 'detail']);
     Route::get('/product/search', [ProductController::class, 'searchProducts']);
     Route::get('/productname/search/{category_id}', [ProductController::class, 'searchProductsByParentId']);
@@ -33,8 +35,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('/productimage/show', [ProductImageController::class, 'show']);
 
     Route::post('/categories', [CategoryController::class, 'index']);
-     //Route::get('/categories/{id}', [CategoryController::class, 'show']);
 
 
-//cart
-Route::post('/addcart/store/{$user_id}/{$product_id}', [CartController::class, 'addcart']);
+//cart  
+
+      Route::post('/carts', [CartController::class, 'store'])->name('carts');
+
+      

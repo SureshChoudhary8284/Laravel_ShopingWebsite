@@ -16,27 +16,10 @@ class CategoryController extends Controller
         $categories->description = 'This is category.';
         $categories->parent_id = null;
         $categories->save();
-        return view('home' , ['categories' => $categories]);
+    
     }
 
-    public function categoryshow($id)
-    {
-        $category = Category::findOrFail($id);
-        $products = $category->products()->with('productimage')->get(); // Assuming you have a products relationship in your Category model
-    
-        return view('categories.categorysearch', compact('category', 'products'));
-    }
-
-    public function getProductDetails($id) {
-        $products = Product::with('images')
-            ->whereHas('category', function ($query) use ($id) {
-                $query->where('parent_id', $id);
-            })
-            ->get();
-    
-        return response()->json($products);
-    }
-    
+   
     
     
 }

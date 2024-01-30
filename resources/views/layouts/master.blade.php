@@ -13,7 +13,7 @@
     <!-- Bootstrap CSS -->
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -25,7 +25,7 @@
         {{-- navbar --}}
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
          <div class="container-fluid">
-          <a class="navbar-brand" href="/api/product/show/" style="display: flex; align-items: center;">
+          <a class="navbar-brand" href="/api/homepage" style="display: flex; align-items: center;">
             <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
         </a>
         
@@ -35,7 +35,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/api/product/show/">Home</a>
+          <a class="nav-link active" aria-current="page" href="/api/homepage/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Orders</a>
@@ -49,7 +49,7 @@
     </div>
    </div> 
 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Left Side Of Navbar -->
     <ul class="navbar-nav me-auto">
 
@@ -88,8 +88,6 @@
     </ul>
 </div>
 
-
-
   </div>
     <div class="col-xl-2 col-lg-9">
       <div class="shopping-cart-button">
@@ -109,7 +107,7 @@
       <li><a class="dropdown-item" href="/api/productname/search/7">Laptop</a></li>
     </ul>
   </div>
-  
+    
   <div class="btn-group">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
       Dresses
@@ -192,7 +190,7 @@
        
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-          <a class="navbar-brand" href="/api/product/show/" style="display: flex; align-items: center;">
+          <a class="navbar-brand" href="/api/homepage" style="display: flex; align-items: center;">
             <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
         </a>
           © 2024 Copyright:
@@ -200,6 +198,6 @@
         </div>
         <!-- Copyright -->
       </footer>
-     <hr>
+     <hr> 
 </body>
 </html>

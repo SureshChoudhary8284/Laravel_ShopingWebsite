@@ -19,7 +19,7 @@ class ProductController extends Controller
         $product->quantity = 100;
         $product->status = 'active';
         $product->save();
-        return response()->json(['product' => $product]);
+      //  return response()->json(['product' => $product]);
     }
     public function show()
     {

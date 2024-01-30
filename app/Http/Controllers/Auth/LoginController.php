@@ -58,13 +58,25 @@ class LoginController extends Controller
             
          }
          else{
-            return redirect('/api/product/show/');
+            return redirect('/home');
          }
      }
      else{
         return redirect()->route('login')->with('error','Input proper email or password');
      }
 
+    }
+
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/login');
     }
 
 }

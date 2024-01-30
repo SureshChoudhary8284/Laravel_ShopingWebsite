@@ -33,4 +33,12 @@ class HomeController extends Controller
         return view('admindashboard');
     }
     
+
+    public function getUser(Request $request)
+    {
+        $user = $request->auth()->user();
+        
+        return response()->json($user);
+    }
+    
 }

@@ -21,6 +21,6 @@ class IsAdmin
          if(auth()->user()->is_admin == 1){
             return $next($request);
          } 
-        return redirect('/api/product/show')->with('error', 'You have no Admin access');
+        return redirect('/api/home')->with('error', 'You have no Admin access');
     }
 }

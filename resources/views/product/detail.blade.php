@@ -8,17 +8,26 @@
             <img src="{{ $product->images->first()->path }}" class="d-block w-100" alt=""
                 style="max-height:auto; margin-left:03%;">
             <br>
-            <form action="/api/addcart/store/" method="POST">
+            <form action="/carts" method="POST">
                 @csrf
+                @if(auth()->check())
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                @else
+                    <!-- Handle the case when the user is not authenticated -->
+                    <input type="hidden" name="user_id" value="{{ null }}">
+                @endif
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <button class="btn btn-success m-2" >Add To Cart</button>
+                <button type="submit" class="btn btn-success m-2">Add To Cart</button>
             </form>
+            
+            
+            
             <a href="">
                  <button class="btn btn-primary ml-3">Buy Now</button>
             </a>
         </div> 
         <div class="col-sm-6">
-            <h3><a style="margin-left:80% " href="/api/product/show/">Go Back</a></h3><br><br>  
+            <h3><a style="margin-left:80% " href="/api/homepage">Go Back</a></h3><br><br>  
             <h2 style="margin-left:20%"> Name  : {{ $product->name }}</h2><br>
             <h2 style="margin-left:20%"> Category  : {{$product->Category->name }}</h2><br> 
             <h4 style="margin-left:20%"> Price  : Rs {{ $product->price }}</h4><br>
