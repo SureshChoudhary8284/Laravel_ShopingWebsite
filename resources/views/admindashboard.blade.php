@@ -8,7 +8,7 @@
             @if(session('error'))
             <div class="alert alert-success" role="alert">
                 {{ session('error') }}
-            </div>
+            </div>  
             @endif
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>

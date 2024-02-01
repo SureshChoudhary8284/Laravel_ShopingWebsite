@@ -4,52 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function store(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'user_id' => 'required',
-            'product_id' => 'required',
-            // You may add more validation rules as needed
-        ]);
-
-        // Create a new cart item
-        $cartItem = Cart::create([
-            'user_id' => $request->user_id,
-            'product_id' => $request->product_id,
-            'status' => 'pending', // You may set a default status or handle it differently
-        ]);
-
-        // Optionally, you can return a response indicating success
-        return response()->json(['message' => 'Item added to cart successfully', 'data' => $cartItem], 201);
-    }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
     public function AddCart(Request $request)
     {
         $validatedData = $request->validate([
@@ -59,26 +19,63 @@ class CartController extends Controller
         // Check if the user is authenticated
         if (auth()->check()) {
             $user_id = auth()->user()->id;
-    
-            $cart = new Cart();
-            $cart->user_id = $user_id;
-            $cart->product_id = $validatedData['product_id'];
-            $cart->status = 'pending';
-    
-            $cart->save();
-    
-            // Redirect the user to another page (e.g., homepage page) after successful cart addition
-            return redirect()->route('/api/homepage');
+        
+
+            $cartItems = new Cart();
+            $cartItems->user_id = $user_id;
+            $cartItems->product_id = $validatedData['product_id'];
+            $cartItems->quantity=1;
+            $cartItems->status = 'pending';
+            $cartItems->save();
+            
+           return redirect('/api/view/cart/');
+            } 
+            else
+            {
+                return redirect()->route('login');
+            }
+    }
+         
+
+    public function viewcart(){
+        if(auth()->check()) {
+            $cartItems = Cart::where('user_id', auth()->id())->get();
+            // Calculate total items in the cart for the user
+            $total = $cartItems->count();
+            return view('product.cart', compact('cartItems', 'total'));
         } else {
-            // Redirect the user to the login page
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Please log in to view your cart.');
         }
     }
     
     
-    
-    
 
+        static function cartItems(){
+
+            $user = Session::get('user');
+            $userId = auth()->user() ? auth()->user()->id : 0;
+            return Cart::where('user_id', $userId)->count();
+            
+        }
+
+        
+        public function removeItem(Request $request)
+        {
+            $productId = $request->input('id');
+    
+            // Assuming you have a Cart model with an 'id' attribute
+            $cartItems = Cart::find($productId);
+        
+            if ($cartItems) {
+                $cartItems->delete();
+                return redirect('/api/view/cart/');
+            }
+    
+            return view('product.cart'); // Adjust the route name based on your application
+        }
     
 }
+
+    
+
             

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Cart;
 use App\Models\Category;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class ProductController extends Controller
 {
@@ -12,14 +15,14 @@ class ProductController extends Controller
     public function index()
     {
         $product = new Product();
-        $product->category_id = 1; // Replace with the actual category_id
+        $product->category_id = 2; // Replace with the actual category_id
         $product->name = ' Samsung Phone';
         $product->description = 'This is a small and many features';
-        $product->price = '6000';
+        $product->price = '60000';
         $product->quantity = 100;
         $product->status = 'active';
         $product->save();
-      //  return response()->json(['product' => $product]);
+     // return response()->json(['product' => $product]);
     }
     public function show()
     {
@@ -60,5 +63,5 @@ class ProductController extends Controller
     }
       
 
-   
+    
 }

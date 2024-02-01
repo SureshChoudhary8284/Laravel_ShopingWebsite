@@ -1,3 +1,4 @@
+   
 @extends('layouts.master')
 @section('content')
 @if (session('status'))
@@ -14,7 +15,7 @@
               <a href="/api/detail/{{ $item['id']}}">
                 @if ($item->images && $item->images->isNotEmpty() && $item->images->first())
                   <img src="{{ $item->images->first()->path }}" class="d-block w-90" alt="{{ $item->name }}"
-                  style="max-height: auto; object-fit: cover; margin-left:30%;">
+                  style="max-height:auto;  margin-left:30%;">
                 @endif
                 <div class="carousel-caption d-none d-md-block">
                   <h2 style="color: black; text-align: right">{{ $item->name }}</h2>

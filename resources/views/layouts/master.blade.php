@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -21,11 +22,13 @@
     <!-- Scripts -->
 </head>
 <body>
+
+
     <div id="master">
         {{-- navbar --}}
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
          <div class="container-fluid">
-          <a class="navbar-brand" href="/api/homepage" style="display: flex; align-items: center;">
+          <a class="navbar-brand" href="/api/home" style="display: flex; align-items: center;">
             <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
         </a>
         
@@ -35,7 +38,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/api/homepage/">Home</a>
+          <a class="nav-link active" aria-current="page" href="/api/home/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Orders</a>
@@ -86,25 +89,29 @@
             </li>
         @endguest
     </ul>
-</div>
-
   </div>
+</div>
+<?php
+use  App\Http\Controllers\CartController;
+$total = CartController::cartItems();
+
+?>
     <div class="col-xl-2 col-lg-9">
       <div class="shopping-cart-button">
-        <a href="cart.html" class="outline">Cart(0)</a>
+        
+        <a href="/api/view/cart/" >Cart({{$total}})</a>
       </div>
-      
+    </div> 
    </nav>
-
    <hr>
    <div class="btn-group">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
       Electronic
     </button>
     <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-      <li><a class="dropdown-item" href="/api/productname/search/3">Mobile</a></li>
-      <li><a class="dropdown-item" href="/api/productname/search/75">Computer</a></li>
-      <li><a class="dropdown-item" href="/api/productname/search/7">Laptop</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/2">Mobile</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/3">Computer</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/4">Laptop</a></li>
     </ul>
   </div>
     
@@ -113,8 +120,8 @@
       Dresses
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
-      <li><a class="dropdown-item" href="/api/productname/search/27">Shirt</a></li>
-      <li><a class="dropdown-item" href="/api/productname/search/27">Jeans</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/11">Shirt</a></li>
+      <li><a class="dropdown-item" href="/api/productname/search/11">Jeans</a></li>
     </ul>
   </div>
    <hr>
@@ -190,7 +197,7 @@
        
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-          <a class="navbar-brand" href="/api/homepage" style="display: flex; align-items: center;">
+          <a class="navbar-brand" href="/api/home" style="display: flex; align-items: center;">
             <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
         </a>
           © 2024 Copyright:

@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,25 +22,30 @@ use App\Http\Controllers\CategoryController;
 */
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('/logintoken', 'LoginController@logintoken')->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->get('/api/home', function (Request $request) {
     return $request->user();
 });
 
-    Route::post('/product', [ProductController::class, 'index']); // Retrieve all products
-    Route::get('/homepage', [ProductController::class, 'show']); // Retrieve a specific product by ID
-    Route::get('/detail/{id}', [ProductController::class, 'detail']);
-    Route::get('/product/search', [ProductController::class, 'searchProducts']);
-    Route::get('/productname/search/{category_id}', [ProductController::class, 'searchProductsByParentId']);
 
+
+Route::post('/product', [ProductController::class, 'index']); // Retrieve all products
+Route::get('/home', [ProductController::class, 'show']); // Retrieve a specific product by ID
+Route::get('/detail/{id}', [ProductController::class, 'detail']);
+Route::get('/product/search', [ProductController::class, 'searchProducts']);
+Route::get('/productname/search/{category_id}', [ProductController::class, 'searchProductsByParentId']);
 //images
-    Route::post('/productimage', [ProductImageController::class, 'index']);
-    Route::get('/productimage/show', [ProductImageController::class, 'show']);
+Route::post('/productimage', [ProductImageController::class, 'index']);
+Route::get('/productimage/show', [ProductImageController::class, 'show']);
 
-    Route::post('/categories', [CategoryController::class, 'index']);
+Route::post('/categories', [CategoryController::class, 'index']);
 
 
-//cart  
+//cart 
+Route::post('/carts',[CartController::class, 'AddCart'])->name('product.cart');
+Route::get('/view/cart/',[CartController::class, 'viewcart']);
+Route::get('/cart/remove/',[CartController::class, 'removeItem'])->name('product.cart');
 
-      Route::post('/carts', [CartController::class, 'store'])->name('carts');
-
-      
+//order
+Route::get('/order',[OrderController::class,'PlaceOrder']);

@@ -12,9 +12,9 @@ class CategoryController extends Controller
         // Retrieve all categories from the database
      
         $categories = new Category();
-        $categories->name = 'Dress';
-        $categories->description = 'This is category.';
-        $categories->parent_id = null;
+        $categories->name = 'Electronic';
+        $categories->description = 'This is Electronic category.';
+        $categories->parent_id = 1;
         $categories->save();
     
     }
