@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,7 @@ use App\Http\Controllers\OrderController;
 */
 
 
-Route::post('/logintoken', 'LoginController@logintoken')->middleware('auth:sanctum');
-
-Route::middleware('auth:sanctum')->get('/api/home', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -47,5 +46,13 @@ Route::post('/carts',[CartController::class, 'AddCart'])->name('product.cart');
 Route::get('/view/cart/',[CartController::class, 'viewcart']);
 Route::get('/cart/remove/',[CartController::class, 'removeItem'])->name('product.cart');
 
+
 //order
-Route::get('/order',[OrderController::class,'PlaceOrder']);
+
+Route::post('/checkout_order',[OrderController::class,'PlaceOrder'])->name('product.checkout');
+Route::post('/checkout_order/{productId}', [OrderController::class, 'Detailorder']);
+
+
+ //order items
+
+// Route::post('/orderItem',[OrderItemController::class,'OrderItem']);

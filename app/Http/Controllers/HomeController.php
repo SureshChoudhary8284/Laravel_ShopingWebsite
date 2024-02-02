@@ -34,11 +34,5 @@ class HomeController extends Controller
     }
     
 
-    public function getUser(Request $request)
-    {
-        $user = $request->auth()->user();
-        
-        return response()->json($user);
-    }
     
 }

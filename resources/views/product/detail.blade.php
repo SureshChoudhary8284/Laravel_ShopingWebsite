@@ -20,11 +20,10 @@
                 <button type="submit" class="btn btn-success m-2">Add To Cart</button>
             </form>
             
-            
-            
-            <a href="">
-                 <button class="btn btn-primary ml-3">Buy Now</button>
-            </a>
+            <form action="/api/checkout_order/{{ $product->id }}" method="POST">
+                @csrf   
+                <button  class="btn btn-primary ml-3">Buy Now</button>
+            </form>
         </div> 
         <div class="col-sm-6">
             <h3><a style="margin-left:80% " href="/api/home">Go Back</a></h3><br><br>  
@@ -33,13 +32,7 @@
             <h4 style="margin-left:20%"> Price  : Rs {{ $product->price }}</h4><br>
             <h4  style="margin-left:20%"> Description  : {{ $product->description }}</h4><br>
             <br>
-{{--             
-            <div class="input-group mb-2" style="margin-left:20%">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-body-secondary" id="quantity-addon">Qty</span>
-                    <input type="number" class="form-control" aria-describedby="quantity-addon" value="1" min="1">
-                </div>
-            </div> --}}
+
     </div>
 
 </div>

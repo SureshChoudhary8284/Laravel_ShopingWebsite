@@ -48,9 +48,10 @@
                                             <img src="{{ $image->path }}" style="max-width: 200px; height: auto;">
                                             <hr>
                                         @endif
-                                    </a>                             
+                                                              
                                 <h4>Name: {{ $product->name }}</h4>
                                 <h5>Price: Rs.{{ $product->price }}</h5>
+                               </a>  
                                 @endforeach
                             </div>
                         </td>

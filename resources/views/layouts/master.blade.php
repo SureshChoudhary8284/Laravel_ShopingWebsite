@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,7 +9,7 @@
 
     <title>{{ config('master.name', 'ECOMMERCE') }}</title>
 
-    
+      
     <!-- Bootstrap CSS -->
 
 
@@ -27,7 +26,9 @@
     <div id="master">
         {{-- navbar --}}
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+
          <div class="container-fluid">
+          
           <a class="navbar-brand" href="/api/home" style="display: flex; align-items: center;">
             <img src="/img/shoplogo.jpeg" alt="Logo" style="max-width: 100px; height: auto; border-radius:40%">
         </a>

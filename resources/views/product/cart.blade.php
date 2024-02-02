@@ -40,10 +40,9 @@
                                         </div>
                                     </td>
                                     <td class="total-price">{{ $item->quantity * $item->product->price }}</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-danger btn-remove" name="id" value="{{ $item->id }}">Remove</button>
-
-                                    </td>
+                                     <td>
+                                         <button type="submit" class="btn btn-danger btn-remove" name="id" value="{{ $item->id }}">Remove</button>
+                                     </td>
                                 </tr>
                             @else
                                 <tr>
@@ -54,8 +53,13 @@
                     </tbody>
                 </table>
             </form>
+
+            {{-- <form action="{{ route('product.checkout') }}" method="POST"> --}}
+            <form action="/api/checkout_order" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-success">Place Order</button>
+            </form>
             
-            <a href="/api/order/" class="btn btn-success">Place Order</a>
 
             <div class="text-end">
                 <strong>Total: Rs<span id="cart-total">{{ $total }}</span></strong>
