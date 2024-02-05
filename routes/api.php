@@ -44,7 +44,7 @@ Route::post('/categories', [CategoryController::class, 'index']);
 //cart 
 Route::post('/carts',[CartController::class, 'AddCart'])->name('product.cart');
 Route::get('/view/cart/',[CartController::class, 'viewcart']);
-Route::get('/cart/remove/',[CartController::class, 'removeItem'])->name('product.cart');
+Route::post('/cart/remove/',[CartController::class, 'removeItem'])->name('product.cart');
 
 
 //order

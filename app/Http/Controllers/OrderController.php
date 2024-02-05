@@ -42,7 +42,9 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = auth()->user()->id ? auth()->user()->id : null;
         $order->status = 'pending';
-        $order->total_amount= $product->price;
+        $order->total_amount = $product->price ?? 0;
+      //  $order->total_amount = $product->price !== null ? $product->price : null;
+
         $order->save();
         
         return view('product.checkout', ['cartItems' => $order]);;
