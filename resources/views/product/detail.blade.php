@@ -20,7 +20,9 @@
                 <button type="submit" class="btn btn-success m-2">Add To Cart</button>
             </form>
             
-            <form action="/api/checkout_order/{{ $product->id }}" method="POST">
+            {{-- <form action="/api/checkout_order/{{ $product->id }}" method="POST"> --}}
+            <form action="/api/checkout/showaddress" method="POST">
+                
                 @csrf   
                 <button  class="btn btn-primary ml-3">Buy Now</button>
             </form>

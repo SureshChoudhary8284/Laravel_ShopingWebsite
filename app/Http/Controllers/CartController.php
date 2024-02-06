@@ -19,8 +19,7 @@ class CartController extends Controller
         // Check if the user is authenticated
         if (auth()->check()) {
             $user_id = auth()->user()->id;
-        
-
+    
             $cartItems = new Cart();
             $cartItems->user_id = $user_id;
             $cartItems->product_id = $validatedData['product_id'];
@@ -41,8 +40,8 @@ class CartController extends Controller
         if(auth()->check()) {
             $cartItems = Cart::where('user_id', auth()->id())->get();
             // Calculate total items in the cart for the user
-            $total = $cartItems->count();
-            return view('product.cart', compact('cartItems', 'total'));
+            //$total = $cartItems->count();
+            return view('product.cart', compact('cartItems'));
         } else {
             return redirect()->route('login')->with('error', 'Please log in to view your cart.');
         }

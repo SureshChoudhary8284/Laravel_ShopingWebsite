@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,3 +57,10 @@ Route::post('/checkout_order/{productId}', [OrderController::class, 'Detailorder
  //order items
 
 // Route::post('/orderItem',[OrderItemController::class,'OrderItem']);
+
+
+//address   
+
+Route::post('/checkout/saveaddress',[AddressController::class,'address'])->name('product.checkout');
+Route::post('/checkout/saveaddress',[AddressController::class,'saveAddress'])->name('product.checkout');
+Route::get('/checkout/showaddress',[AddressController::class,'showaddress'])->name('product.checkout');

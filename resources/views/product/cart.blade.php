@@ -76,7 +76,7 @@
                     </div>
                 </div>  
                 <div class="text-end">
-                    <strong>Total: Rs<span id="cart-total">{{ $total }}</span></strong>
+                    <strong>Total: Rs<span id="cart-total">{{ $item->quantity * $item->product->price  }}</span></strong>
                 </div>
             </div>
         @else
@@ -104,6 +104,7 @@
                     input.dispatchEvent(new Event('input'));
                 }
             });
+            
         });
 
         document.querySelectorAll('.quantity-increment').forEach(function (button) {

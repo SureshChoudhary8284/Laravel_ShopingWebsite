@@ -22,7 +22,6 @@ use App\Http\Controllers\CartController;
 */
 
 
-Route::get('/home', [HomeController::class,'index']);
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
