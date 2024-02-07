@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <h1>Shopping Cart</h1>
-        @if($cartItems && count($cartItems) > 0)
-           
+        <form action="/api/checkout_order" method="POST">
+            @csrf
+            @if($cartItems && count($cartItems) > 0)
                 <table class="table">
                     <thead>
                         <tr>
@@ -54,8 +55,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <form action="/api/checkout_order" method="POST">
-                    @csrf
+           
                     <button type="submit" class="btn btn-success">Place Order</button>
                 </form>
                 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">

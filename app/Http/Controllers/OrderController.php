@@ -20,8 +20,8 @@ class OrderController extends Controller
         // Remove items from the cart
         Cart::where('user_id', auth()->user()->id)->delete();
         //return response()->json($order);
-        
-        return view('product.checkout', ['cartItems' => $order]);
+          return redirect('/api/checkout/details');
+            //return view('product.checkout');
     }
 
     private function calculateTotalAmount($userId)
@@ -43,11 +43,9 @@ class OrderController extends Controller
         $order->user_id = auth()->user()->id ? auth()->user()->id : null;
         $order->status = 'pending';
         $order->total_amount = $product->price ?? 0;
-      //  $order->total_amount = $product->price !== null ? $product->price : null;
-
         $order->save();
-        
-        return view('product.checkout', ['cartItems' => $order]);;
+        return redirect('/api/checkout/details');
+       // return view('product.checkout', ['cartItems' => $order]);
     }
 
     

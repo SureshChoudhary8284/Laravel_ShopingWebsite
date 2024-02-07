@@ -50,7 +50,7 @@ Route::post('/cart/remove/',[CartController::class, 'removeItem'])->name('produc
 
 //order
 
-Route::post('/checkout_order',[OrderController::class,'PlaceOrder'])->name('product.checkout');
+Route::post('/checkout_order',[OrderController::class,'PlaceOrder']);
 Route::post('/checkout_order/{productId}', [OrderController::class, 'Detailorder']);
 
 
@@ -58,9 +58,9 @@ Route::post('/checkout_order/{productId}', [OrderController::class, 'Detailorder
 
 // Route::post('/orderItem',[OrderItemController::class,'OrderItem']);
 
+Route::get('/product/address',[AddressController::class,'newaddress'])->name('product.address');
+Route::post('/checkout/saveaddress', [AddressController::class, 'address']);
+Route::get('/checkout/details', [AddressController::class, 'showAddress'])->name('product.checkout');
+Route::get('/editaddress/{id}', [AddressController::class, 'editAddress'])->name('product.editaddress');
+Route::post('/editaddress/{id}', [AddressController::class, 'updateAddress']); // Define the route for updating the address
 
-//address   
-
-Route::post('/checkout/saveaddress',[AddressController::class,'address'])->name('product.checkout');
-Route::post('/checkout/saveaddress',[AddressController::class,'saveAddress'])->name('product.checkout');
-Route::get('/checkout/showaddress',[AddressController::class,'showaddress'])->name('product.checkout');
